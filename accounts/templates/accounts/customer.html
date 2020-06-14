@@ -1,0 +1,78 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Customer:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'createOrder' customer.id %}">place order</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Email: {{customer.email}} </p>
+			<p>Phone: {{customer.phone}} </p>
+		</div>
+	</div>
+ 
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Orders</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{order_count}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+			{{myfilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Product</th>
+					<th>Note</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+				{% for element in orders %}
+				  <tr>
+				     <td>{{element.product}}</td>
+					 <td>{{element.product.category}}</td>
+					 <td>{{element.date_created}}</td>
+					 <td>{{element.status}}</td>
+					 <td><a class="btn btn-sm btn-info" href="{% url 'updateOrder' element.id %}">Update</a></td>
+            <td><a class="btn btn-sm btn-danger" href="{% url 'deleteOrder' element.id %}">Delete</a></td>
+				  </tr>
+				
+				{% endfor %}
+
+
+			</table>
+		</div>
+	</div>
+</div>{% endblock content %}
