@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'accounts',
+    'accounts.apps.AccountsConfig',
     'django_filters',
 ]
 
@@ -125,8 +125,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/img/'
 
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')

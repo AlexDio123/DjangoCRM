@@ -18,18 +18,12 @@ from .decorators import unauth_user, allowed_users, admin_only
 # Register Page function
 @unauth_user
 def registerPage(request):
-
     form = CreateUserForm()
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-            group = Group.objects.get(name='customer')
-            user.groups.add(group)
-            Customer.objects.create(
-                user=user
-            )
 
             messages.success(request, "Account was created for " + username)
             return redirect('login')
@@ -88,7 +82,7 @@ def user_page(request):
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
 
-    context = {'orders':orders, 'total_orders': total_orders,
+    context = {'orders': orders, 'total_orders': total_orders,
                'delivered': delivered, 'pending': pending}
 
     return render(request, 'accounts/user.html', context)
@@ -105,9 +99,9 @@ def account_settings(request):
         if form.is_valid():
             form.save()
 
-
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'accounts/account_settings.html', context)
+
 
 # Product Page
 @login_required(login_url='login')
