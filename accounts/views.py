@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect
 from django.forms import inlineformset_factory
+
+# imports from django contrib
 from django.contrib.auth.models import Group
-from .decorators import unauth_user
-from .models import *
-from .forms import OrderForm, CreateUserForm
-from .filters import OrderFilter
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
+# imports from local files
+from .models import *
+from .forms import OrderForm, CreateUserForm, CustomerForm
+from .filters import OrderFilter
 from .decorators import unauth_user, allowed_users, admin_only
 
 
@@ -90,6 +93,21 @@ def user_page(request):
 
     return render(request, 'accounts/user.html', context)
 
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles='customer')
+def account_settings(request):
+    customer = request.user.customer
+    form = CustomerForm(instance=customer)
+
+    if request.method == "POST":
+        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
+
+
+    context = {'form':form}
+    return render(request, 'accounts/account_settings.html', context)
 
 # Product Page
 @login_required(login_url='login')
