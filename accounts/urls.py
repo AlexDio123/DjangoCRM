@@ -3,8 +3,8 @@ from django.contrib.auth import views as auth_views
 from .views import * 
 
 urlpatterns = [
-    path('register/', registerPage, name="register"),
-    path('login/', loginPage, name="login"),
+    path('register/', register_page, name="register"),
+    path('login/', login_page, name="login"),
     path('logout/', logout_user, name="logout"),
 
     path('', home, name="home"),
@@ -13,9 +13,9 @@ urlpatterns = [
     path('products/', products, name="products"),
     path('customer/<str:pk_test>', customer, name="customer"),
 
-    path('create_order/<str:pk>',createOrder, name="createOrder" ),
-    path('update_order/<str:pk>', updateOrder, name="updateOrder"),
-    path('delete_order/<str:pk>', deleteOrder, name="deleteOrder"),
+    path('create_order/<str:pk>',create_order, name="createOrder" ),
+    path('update_order/<str:pk>', update_order, name="updateOrder"),
+    path('delete_order/<str:pk>', delete_order, name="deleteOrder"),
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"),
          name="reset_password"),
