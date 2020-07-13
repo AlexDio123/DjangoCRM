@@ -16,7 +16,7 @@ from .decorators import unauth_user, allowed_users, admin_only
 
 # Register Page function
 @unauth_user
-def register_page(request):
+def registerPage(request):
     form = CreateUserForm()
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -33,7 +33,7 @@ def register_page(request):
 
 # Login Page Function
 @unauth_user
-def login_page(request):
+def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -130,7 +130,7 @@ def customer(request, pk_test):
 # Create Order
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
-def create_order(request, pk):
+def createOrder(request, pk):
     OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10)
 
     customer = Customer.objects.get(id=pk)
@@ -154,7 +154,7 @@ def create_order(request, pk):
 # Update Order
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
-def update_order(request, pk):
+def updateOrder(request, pk):
     order = Order.objects.get(id=pk)
     form = OrderForm(instance=order)
 
@@ -173,7 +173,7 @@ def update_order(request, pk):
 # Delete Order
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
-def delete_order(request, pk):
+def deleteOrder(request, pk):
     order = Order.objects.get(id=pk)
     if request.method == "POST":
         order.delete()
