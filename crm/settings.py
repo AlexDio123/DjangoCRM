@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'crm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Demo_crm',
-        'USER': 'postgres',
-        'PASSWORD':'Diamante$1',
-        'HOST':'database-1.cghkyuwyikfh.us-east-2.rds.amazonaws.com',
-        'PORT':'5432',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD':'',
+        'HOST':'',
+        'PORT':'',
     }
 }
 import dj_database_url
@@ -147,14 +147,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST= 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'alexdionicio934@gmail.com'
-EMAIL_HOST_PASSWORD = 'Diamante'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
 #S3 BUCKETS CONFIG
 
-AWS_ACCESS_KEY_ID = 'AKIASAMIMQPVIBYLC2PC'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'alex-democrm-bucket'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
